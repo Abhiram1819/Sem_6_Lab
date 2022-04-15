@@ -1,0 +1,12 @@
+db
+use sathyabama
+show dbs
+db.createCollection('Student')
+show collections
+db.Student.insertOne({s_id:101, s_name:"Abhinav", s_regno:12345678})
+db.Student.insertMany([{s_id:102, s_name:"Abhishek"},{s_name:"Harris", s_regno:456123789}])
+db.Student.find()
+db.Student.update({s_name:"Harris"}, {$set:{s_regno:789456123}})
+db.Student.find()
+db.Student.deleteOne({"s_name":"Abhishek"})
+db.Student.find()
