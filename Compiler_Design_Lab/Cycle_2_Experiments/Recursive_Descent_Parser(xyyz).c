@@ -36,9 +36,12 @@ int main()
 
 int L()
 {
-    printf("L->xL'z");
-    i++;
-    Lprime();
+    if (str[i] == 'x')
+    {
+        printf("L->xL'z");
+        i++;
+        Lprime();
+    }
 }
 
 int Lprime()
