@@ -101,7 +101,7 @@ void parse(char *str)
             right++;
             left = right;
         }
-        else if (isDelimiter(str[right]) == true && left != right || (right == len && left != right))
+        else if ((isDelimiter(str[right]) == true && left != right) || (right == len && left != right))
         {
             char *subStr = subString(str, left, right - 1);
 
