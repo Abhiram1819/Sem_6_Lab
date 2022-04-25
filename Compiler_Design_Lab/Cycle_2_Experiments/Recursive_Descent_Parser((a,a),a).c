@@ -1,11 +1,9 @@
 /*
 Question: Write a C program for the below given production and parse the corresponding string using Recursive Descent Parser.
 
-S -> (E) | b
+S -> aBc
 
-E -> SE'
-
-E' -> ,SE' | ^
+B -> bc | c
 
 Input: ((a,a),a)
 
