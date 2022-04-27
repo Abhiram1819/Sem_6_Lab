@@ -4,7 +4,7 @@ Build a lexical analyzer in C language which will identify the tokens from the g
 
 Test Case:
 
-Input: Area and Perimeter of triangle formula (Take area as area, base as base and height as height)
+Input: Area and Perimeter of triangle formula (Take area as area, base as base and height as height and sides as side1, side2 and side3)
 
 Output: Valid keyword : doubleValid Identifier : areaValid operator : =Valid Identifier : 
         side1Valid operator : +Valid Identifier : side2Valid operator : +Valid Identifier : side3Valid 
