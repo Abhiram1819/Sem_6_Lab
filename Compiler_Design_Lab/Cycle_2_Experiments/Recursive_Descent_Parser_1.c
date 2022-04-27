@@ -1,36 +1,89 @@
 /*
-Question: Write a C program for the below given production and parse the corresponding string using Recursive Descent Parser.
+Question: Write a C program to parse the given string using Recursive Descent Parser.
 
-S -> ABCDE
+Input: x+x*x
 
-A -> a | ε
-
-B -> b | ε
-
-C -> c
-
-D -> d | ε
-
-E -> e | ε
-
-Input: abcde
-
-Output: S->ABCDEA->aB->bC->cD->dE->estring sucessfully parsed!
+Output: E->TE'T->FT'F->xT'->^E'->+TE'T->FT'F->xT'->*FT'F->xT'->^E'->^string sucessfully parsed!
 */
 
 #include <stdio.h>
-#include <ctype.h>
 #include <string.h>
-
-int S();
-int A();
-int B();
-int C();
-int D();
-int E();
-
 int i = 0, f = 0;
 char str[30];
+
+int E();
+int Eprime();
+int T();
+int Tprime();
+int F();
+
+int E()
+{
+    printf("E->TE'");
+    T();
+    Eprime();
+    return 0;
+}
+
+int Eprime()
+{
+    if (str[i] == '+')
+    {
+        printf("E'->+TE'");
+        i++;
+        T();
+        Eprime();
+    }
+    else if ((str[i] == ')') || (str[i] == '$'))
+        printf("E'->^");
+    return 0;
+}
+
+int T()
+{
+    printf("T->FT'");
+    F();
+    Tprime();
+    return 0;
+}
+
+int Tprime()
+{
+    if (str[i] == '*')
+    {
+        printf("T'->*FT'");
+        i++;
+        F();
+        Tprime();
+    }
+
+    else if ((str[i] == ')') || (str[i] == '+') || (str[i] == '$'))
+    {
+        printf("T'->^");
+    }
+    return 0;
+}
+
+int F()
+{
+    if (str[i] == 'x')
+    {
+        printf("F->x");
+        i++;
+    }
+
+    else if (str[i] == '(')
+    {
+        printf("F->(E)");
+        i++;
+        E();
+        if (str[i] == ')')
+            i++;
+    }
+    else
+        f = 1;
+    return 0;
+}
 
 int main()
 {
@@ -38,95 +91,10 @@ int main()
     scanf("%s", str);
     len = strlen(str);
     str[len] = '$';
-    S();
+    E();
     if ((str[i] == '$') && (f == 0))
         printf("string sucessfully parsed!");
     else
         printf("syntax Error!");
-    return 0;
-}
-
-int S()
-{
-    printf("S->ABCDE");
-    A();
-    B();
-    C();
-    D();
-    E();
-    return 0;
-}
-
-int A()
-{
-    if (str[i] == 'a')
-    {
-        printf("A->a");
-        i++;
-    }
-    else
-    {
-        printf("A->^");
-        i++;
-    }
-    return 0;
-}
-
-int B()
-{
-    if (str[i] == 'b')
-    {
-        printf("B->b");
-        i++;
-    }
-    else
-    {
-        printf("B->^");
-        i++;
-    }
-    return 0;
-}
-
-int C()
-{
-    if (str[i] == 'c')
-    {
-        printf("C->c");
-        i++;
-    }
-    else
-    {
-        f = 1;
-    }
-    return 0;
-}
-
-int D()
-{
-    if (str[i] == 'd')
-    {
-        printf("D->d");
-        i++;
-    }
-    else
-    {
-        printf("D->^");
-        i++;
-    }
-    return 0;
-}
-
-int E()
-{
-    if (str[i] == 'e')
-    {
-        printf("E->e");
-        i++;
-    }
-    else
-    {
-        printf("E->^");
-        i++;
-    }
     return 0;
 }
